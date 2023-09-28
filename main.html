@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <h1>
+          Heloo
+     </h1>   
+     <button id="tt">Clik</button>
+     <script type="text/javascript">
+       /*   const address = "1600 Amphitheatre Parkway, Mountain View, CA";
+          const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+          
+          fetch(url)
+            .then(response => response.json())
+            .then(data => {
+              // Data will contain information about the location
+              if (data.length > 0) {
+                const location = data[0];
+                console.log("Latitude:", location.lat);
+                console.log("Longitude:", location.lon);
+              } else {
+                console.error("Location not found");
+              }
+            })
+            .catch(error => console.error(error));*/
 
+          document.getElementById("tt").onclick = () => {
+
+               navigator.geolocation.getCurrentPosition(postion=>{
+                    const {latitude,longitude} =postion.coords
+                    const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+                    fetch(url).then(res=> res.json()).then(data=>{
+                         console.log(data.address);
+                    }).catch(()=>{
+                         console.log(",vodk")
+                    })
+               })
+          }
+          
+             
+     </script>
+</body>
+</html>
